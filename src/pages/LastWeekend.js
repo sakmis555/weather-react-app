@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import "../App.css";
 import InputForm from "../components/InputForm";
 import NavPage from "../components/NavPage";
+import DetailsCards from "../components/DetailsCards";
+import AdditionalDetailsCards from "../components/AdditionalDetailsCards";
 
 const LastWeekend = ({ city, setCity }) => {
   const [weatherData, setWeatherData] = useState({});
@@ -58,24 +60,9 @@ const LastWeekend = ({ city, setCity }) => {
         )} */}
         {!isLoading && !error && weatherData.address && (
           <>
-            <h2>LastWeekend Data</h2>
-            <p>City Name: {weatherData.address}</p>
-            <p>Current temperature : {weatherData.days[0].temp} Kelvin</p>
-            <p>Minimum temperature : {weatherData.days[0].tempmin} Kelvin</p>
-            <p>Maximum temperature : {weatherData.days[0].tempmax} Kelvin</p>
-            <p>Humidity : {weatherData.days[0].humidity} %</p>
-            <p>Wind speed : {weatherData.days[0].windspeed} meter/sec</p>
-            <p>
-              Wind direction : {weatherData.days[0].winddir} degrees
-              (meteorological)
-            </p>
-            <p>
-              Description of the weather : {weatherData.days[0].description}
-            </p>
-            <img
-              src={require(`../assests/weatherIcons/${weatherData.days[0].icon}.png`)}
-              alt={""}
-            />
+            <DetailsCards weatherDaysArray={weatherData.days} />
+            <h2>Additional Details</h2>
+            <AdditionalDetailsCards weatherDaysArray={weatherData.days} />
           </>
         )}
       </div>

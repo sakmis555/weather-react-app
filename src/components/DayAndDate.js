@@ -1,17 +1,17 @@
 import React from "react";
 
-const AdditionalDetailsCard = ({ weatherData }) => {
+const DayAndDate = ({ weatherDayData }) => {
   var options = {
     weekday: "long",
     year: "numeric",
     month: "short",
     day: "numeric",
   };
-  const date = weatherData.days[0].datetime;
+  const date = weatherDayData.datetime;
   const d = new Date(date);
   const dayAndTime = d.toLocaleDateString("en-US", options);
-  console.log(dayAndTime);
-  return <div></div>;
+  //   console.log(dayAndTime);
+  return <div>{dayAndTime}</div>;
 };
 
-export default AdditionalDetailsCard;
+export default DayAndDate;

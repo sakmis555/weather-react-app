@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import "../App.css";
 import InputForm from "../components/InputForm";
 import NavPage from "../components/NavPage";
+import DetailsCards from "../components/DetailsCards";
+import CurrentConditions from "../components/CurrentConditions";
 
+const UNIT = "uk";
 const WeatherForcast15Days = ({ city, setCity }) => {
   const [forcastData, setForcastData] = useState({});
 
@@ -21,7 +24,7 @@ const WeatherForcast15Days = ({ city, setCity }) => {
         setIsLoading(true);
         setError("");
         const response = await fetch(
-          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${process.env.REACT_APP_KEY}`
+          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?iconSet=icons2&unitGroup=${UNIT}&key=${process.env.REACT_APP_KEY}`
         );
         if (!response.ok) {
           throw new Error("Something went wrong with fetching movies");
@@ -29,13 +32,9 @@ const WeatherForcast15Days = ({ city, setCity }) => {
 
         const data = await response.json();
         console.log("Forcast data for 15 days", data);
-        // if (data.cod !== 200) {
-        //   // console.log(data.message);
-        //   throw new Error(data.message);
-        // }
-        // console.log(data.Search);
-        // console.log("forcast");
-        // console.log("Forcast Data for 15 days", data);
+        if (!data.address) {
+          throw new Error("City not Found");
+        }
         setForcastData(data);
       } catch (err) {
         console.log(err.message);
@@ -54,6 +53,14 @@ const WeatherForcast15Days = ({ city, setCity }) => {
         <InputForm city={city} setCity={setCity} />
         {isLoading && <p>Loading...</p>}
         {error && <p>ERROR OCCURRED: {error}</p>}
+        {!isLoading && !error && forcastData.address && (
+          <>
+            <h2>Current Conditions</h2>
+            <CurrentConditions forcastDayData={forcastData.currentConditions} />
+            <h2>Forcast for 15 days</h2>
+            <DetailsCards weatherDaysArray={forcastData.days} />
+          </>
+        )}
       </div>
     </div>
   );

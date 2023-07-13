@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import "../App.css";
 import InputForm from "../components/InputForm";
 import NavPage from "../components/NavPage";
-import DetailsCard from "../components/DetailsCard";
-import AdditionalDetailsCard from "../components/AdditionalDetailsCard";
+import DetailsCards from "../components/DetailsCards";
+import AdditionalDetailsCards from "../components/AdditionalDetailsCards";
 
 const Today = ({ city, setCity }) => {
   const [weatherData, setWeatherData] = useState({});
@@ -55,14 +55,11 @@ const Today = ({ city, setCity }) => {
         <InputForm city={city} setCity={setCity} />
         {isLoading && <p>Loading...</p>}
         {error && <p>ERROR OCCURRED: {error}</p>}
-        {/* {!isLoading && (
-          <p>Enter the city name to fetch the data. Error in fetching</p>
-        )} */}
         {!isLoading && !error && weatherData.address && (
           <>
-            <DetailsCard weatherData={weatherData} />
+            <DetailsCards weatherDaysArray={weatherData.days} />
             <h2>Additional Details</h2>
-            <AdditionalDetailsCard weatherData={weatherData} />
+            <AdditionalDetailsCards weatherDaysArray={weatherData.days} />
           </>
         )}
       </div>
