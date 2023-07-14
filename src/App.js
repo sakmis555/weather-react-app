@@ -14,40 +14,42 @@ import About from "./pages/About";
 function App() {
   const [city, setCity] = useState("");
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home city={city} setCity={setCity} />} />
-        <Route
-          path="/about"
-          element={<About city={city} setCity={setCity} />}
-        />
-        <Route
-          path="/today"
-          element={<Today city={city} setCity={setCity} />}
-        />
-        <Route
-          path="/tomorrow"
-          element={<Tomorrow city={city} setCity={setCity} />}
-        />
-        <Route
-          path="/yesterday"
-          element={<Yesterday city={city} setCity={setCity} />}
-        />
-        <Route
-          path="/next-weekend"
-          element={<NextWeekend city={city} setCity={setCity} />}
-        />
-        <Route
-          path="/last-weekend"
-          element={<LastWeekend city={city} setCity={setCity} />}
-        />
-        <Route
-          path="/weather-forcast-15-days"
-          element={<WeatherForcast15Days city={city} setCity={setCity} />}
-        />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home city={city} setCity={setCity} />} />
+          <Route
+            path="/about"
+            element={<About city={city} setCity={setCity} />}
+          />
+          <Route
+            path="/today"
+            element={<Today city={city} setCity={setCity} />}
+          />
+          <Route
+            path="/tomorrow"
+            element={<Tomorrow city={city} setCity={setCity} />}
+          />
+          <Route
+            path="/yesterday"
+            element={<Yesterday city={city} setCity={setCity} />}
+          />
+          <Route
+            path="/next-weekend"
+            element={<NextWeekend city={city} setCity={setCity} />}
+          />
+          <Route
+            path="/last-weekend"
+            element={<LastWeekend city={city} setCity={setCity} />}
+          />
+          <Route
+            path="/weather-forcast-15-days"
+            element={<WeatherForcast15Days city={city} setCity={setCity} />}
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

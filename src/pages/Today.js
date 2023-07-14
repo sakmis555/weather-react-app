@@ -7,6 +7,8 @@ import InputForm from "../components/InputForm";
 import NavPage from "../components/NavPage";
 import DetailsCards from "../components/DetailsCards";
 import AdditionalDetailsCards from "../components/AdditionalDetailsCards";
+import MainContentHeader from "../components/MainContentHeader";
+import Footer from "../components/Footer";
 
 const Today = ({ city, setCity }) => {
   const [weatherData, setWeatherData] = useState({});
@@ -24,7 +26,7 @@ const Today = ({ city, setCity }) => {
         setIsLoading(true);
         setError("");
         const response = await fetch(
-          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/today?key=${process.env.REACT_APP_KEY}&include=days&iconSet=icons1`
+          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/today?key=${process.env.REACT_APP_KEY}&include=days&iconSet=icons2`
         );
         if (!response.ok) {
           throw new Error(
@@ -51,8 +53,14 @@ const Today = ({ city, setCity }) => {
     <div>
       <NavPage />
       <AllRoutes />
-      <div className="App">
+      <div className="today">
         <InputForm city={city} setCity={setCity} />
+        {weatherData.address && (
+          <MainContentHeader
+            title={"Today's weather"}
+            currentCity={weatherData.address}
+          />
+        )}
         {isLoading && <p>Loading...</p>}
         {error && <p>ERROR OCCURRED: {error}</p>}
         {!isLoading && !error && weatherData.address && (
@@ -63,6 +71,7 @@ const Today = ({ city, setCity }) => {
           </>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

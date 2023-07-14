@@ -11,7 +11,7 @@ const DayAndDate = ({ weatherDayData }) => {
   const d = new Date(date);
   const dayAndTime = d.toLocaleDateString("en-US", options);
   //   console.log(dayAndTime);
-  return <div>{dayAndTime}</div>;
+  return <div className="card-dateandtime">{dayAndTime}</div>;
 };
 
 export default DayAndDate;

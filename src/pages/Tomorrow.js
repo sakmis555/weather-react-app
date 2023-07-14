@@ -7,6 +7,7 @@ import InputForm from "../components/InputForm";
 import NavPage from "../components/NavPage";
 import DetailsCards from "../components/DetailsCards";
 import AdditionalDetailsCards from "../components/AdditionalDetailsCards";
+import Footer from "../components/Footer";
 
 const Tomorrow = ({ city, setCity }) => {
   const [weatherData, setWeatherData] = useState({});
@@ -66,6 +67,7 @@ const Tomorrow = ({ city, setCity }) => {
           </>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

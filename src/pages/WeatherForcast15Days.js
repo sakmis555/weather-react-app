@@ -7,6 +7,7 @@ import InputForm from "../components/InputForm";
 import NavPage from "../components/NavPage";
 import DetailsCards from "../components/DetailsCards";
 import CurrentConditions from "../components/CurrentConditions";
+import Footer from "../components/Footer";
 
 const UNIT = "uk";
 const WeatherForcast15Days = ({ city, setCity }) => {
@@ -57,11 +58,15 @@ const WeatherForcast15Days = ({ city, setCity }) => {
           <>
             <h2>Current Conditions</h2>
             <CurrentConditions forcastDayData={forcastData.currentConditions} />
-            <h2>Forcast for 15 days</h2>
+            <h2>
+              15 Days Forcase for{" "}
+              <span className="main-content-city">{forcastData.address}</span>
+            </h2>
             <DetailsCards weatherDaysArray={forcastData.days} />
           </>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

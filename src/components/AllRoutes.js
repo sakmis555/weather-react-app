@@ -1,30 +1,51 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Search } from "./Icons";
 
 const AllRoutes = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/today">Today</NavLink>
+    <div className="container-routes main">
+      <ul className="routes-list">
+        <li className="route-item">
+          <NavLink className="route-link" to="/yesterday">
+            <i className="bi bi-search"></i>
+            Yesterday
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/tomorrow">Tomorrow</NavLink>
+        <li className="route-item">
+          <NavLink className="route-link" to="/last-weekend">
+            <i className="bi bi-search"></i>
+            Last Weekend
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/yesterday">Yesterday</NavLink>
+        <li className="route-item">
+          <NavLink className="route-link" to="/today">
+            <i className="bi bi-search"></i>
+            Today
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/next-weekend">NextWeekend</NavLink>
+        <li className="route-item">
+          <NavLink className="route-link" to="/tomorrow">
+            <i className="bi bi-search"></i>
+            Tomorrow
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/last-weekend">LastWeekend</NavLink>
+
+        <li className="route-item">
+          <NavLink className="route-link" to="/next-weekend">
+            <i className="bi bi-search"></i>
+            Next Weekend
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/weather-forcast-15-days">15 Days Forcast</NavLink>
+
+        <li className="route-item">
+          <NavLink className="route-link" to="/weather-forcast-15-days">
+            <i className="bi bi-search"></i>
+            15 Days Forcast
+          </NavLink>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 };
 

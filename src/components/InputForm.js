@@ -15,15 +15,20 @@ const InputForm = ({ city, setCity }) => {
     console.log(e.target[0].value);
   }
   return (
-    <div>
-      <form method="post" onSubmit={handleSubmit}>
+    <div className="input-form">
+      <h2>
+        Please enter city name here <i className="bi bi-caret-down-square"></i>
+      </h2>
+      <form method="post" onSubmit={handleSubmit} className="form">
         <input
           type="text"
           placeholder="Enter City Name..."
           value={tempCityName}
           onChange={handleCityName}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="input-button">
+          <i className="bi bi-search"></i>
+        </button>
       </form>
     </div>
   );
