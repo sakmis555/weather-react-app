@@ -9,8 +9,9 @@ import DetailsCards from "../components/DetailsCards";
 import AdditionalDetailsCards from "../components/AdditionalDetailsCards";
 import MainContentHeader from "../components/MainContentHeader";
 import Footer from "../components/Footer";
+import ToggleButton from "../components/ToggleButton";
 
-const Today = ({ city, setCity }) => {
+const Today = ({ city, setCity, checked, setChecked }) => {
   const [weatherData, setWeatherData] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
@@ -56,17 +57,20 @@ const Today = ({ city, setCity }) => {
       <div className="today">
         <InputForm city={city} setCity={setCity} />
         {weatherData.address && (
-          <MainContentHeader
-            title={"Today's weather"}
-            currentCity={weatherData.address}
-          />
+          <div className="main-content-header-toggle">
+            <MainContentHeader
+              title={"Today's weather"}
+              currentCity={weatherData.address}
+            />
+            <ToggleButton checked={checked} setChecked={setChecked} />
+          </div>
         )}
         {isLoading && <p>Loading...</p>}
         {error && <p>ERROR OCCURRED: {error}</p>}
         {!isLoading && !error && weatherData.address && (
           <>
             <DetailsCards weatherDaysArray={weatherData.days} />
-            <h2>Additional Details</h2>
+            <h2>Detailed weather information for {weatherData.address} </h2>
             <AdditionalDetailsCards weatherDaysArray={weatherData.days} />
           </>
         )}

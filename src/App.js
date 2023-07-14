@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -13,6 +13,8 @@ import About from "./pages/About";
 
 function App() {
   const [city, setCity] = useState("");
+  const [unit, setUnit] = useState("uk");
+  useEffect(() => {}, [city, unit]);
   return (
     <div className="App">
       <BrowserRouter>
@@ -20,31 +22,81 @@ function App() {
           <Route path="/" element={<Home city={city} setCity={setCity} />} />
           <Route
             path="/about"
-            element={<About city={city} setCity={setCity} />}
+            element={
+              <About
+                city={city}
+                setCity={setCity}
+                unit={unit}
+                setUnit={setUnit}
+              />
+            }
           />
           <Route
             path="/today"
-            element={<Today city={city} setCity={setCity} />}
+            element={
+              <Today
+                city={city}
+                setCity={setCity}
+                unit={unit}
+                setUnit={setUnit}
+              />
+            }
           />
           <Route
             path="/tomorrow"
-            element={<Tomorrow city={city} setCity={setCity} />}
+            element={
+              <Tomorrow
+                city={city}
+                setCity={setCity}
+                unit={unit}
+                setUnit={setUnit}
+              />
+            }
           />
           <Route
             path="/yesterday"
-            element={<Yesterday city={city} setCity={setCity} />}
+            element={
+              <Yesterday
+                city={city}
+                setCity={setCity}
+                unit={unit}
+                setUnit={setUnit}
+              />
+            }
           />
           <Route
             path="/next-weekend"
-            element={<NextWeekend city={city} setCity={setCity} />}
+            element={
+              <NextWeekend
+                city={city}
+                setCity={setCity}
+                unit={unit}
+                setUnit={setUnit}
+              />
+            }
           />
           <Route
             path="/last-weekend"
-            element={<LastWeekend city={city} setCity={setCity} />}
+            element={
+              <LastWeekend
+                city={city}
+                setCity={setCity}
+                unit={unit}
+                setUnit={setUnit}
+              />
+            }
           />
           <Route
             path="/weather-forcast-15-days"
-            element={<WeatherForcast15Days city={city} setCity={setCity} />}
+            element={
+              <WeatherForcast15Days
+                city={city}
+                setCity={setCity}
+                unit={unit}
+                setUnit={setUnit}
+                count={0}
+              />
+            }
           />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

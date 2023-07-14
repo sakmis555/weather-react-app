@@ -8,13 +8,19 @@ import NavPage from "../components/NavPage";
 import DetailsCards from "../components/DetailsCards";
 import CurrentConditions from "../components/CurrentConditions";
 import Footer from "../components/Footer";
+import ToggleButton from "../components/ToggleButton";
+import MainContentHeader from "../components/MainContentHeader";
 
-const UNIT = "uk";
-const WeatherForcast15Days = ({ city, setCity }) => {
+const WeatherForcast15Days = ({ city, setCity, unit, setUnit, count }) => {
   const [forcastData, setForcastData] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [tempUnit, setTempUnit] = useState(unit);
+  console.log("outside tempunit", tempUnit);
+  console.log("outside unit", unit);
+  console.log(count);
+  count++;
   useEffect(
     () => async () => {
       try {
@@ -24,8 +30,11 @@ const WeatherForcast15Days = ({ city, setCity }) => {
         }
         setIsLoading(true);
         setError("");
+        console.log("INside", unit);
+        console.log("INside tempunit", tempUnit);
+
         const response = await fetch(
-          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?iconSet=icons2&unitGroup=${UNIT}&key=${process.env.REACT_APP_KEY}`
+          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?iconSet=icons2&unitGroup=${unit}&key=${process.env.REACT_APP_KEY}`
         );
         if (!response.ok) {
           throw new Error("Something went wrong with fetching movies");
@@ -44,7 +53,7 @@ const WeatherForcast15Days = ({ city, setCity }) => {
         setIsLoading(false);
       }
     },
-    [city]
+    [city, unit, tempUnit]
   );
   return (
     <div>
@@ -52,6 +61,19 @@ const WeatherForcast15Days = ({ city, setCity }) => {
       <AllRoutes />
       <div className="App">
         <InputForm city={city} setCity={setCity} />
+        {forcastData.address && (
+          <div className="main-content-header-toggle">
+            <MainContentHeader
+              title={"15 Days Forcast for "}
+              currentCity={forcastData.address}
+            />
+            <ToggleButton
+              unit={unit}
+              setUnit={setUnit}
+              setTempUnit={setTempUnit}
+            />
+          </div>
+        )}
         {isLoading && <p>Loading...</p>}
         {error && <p>ERROR OCCURRED: {error}</p>}
         {!isLoading && !error && forcastData.address && (

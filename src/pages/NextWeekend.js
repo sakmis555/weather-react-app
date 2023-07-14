@@ -8,8 +8,10 @@ import NavPage from "../components/NavPage";
 import DetailsCards from "../components/DetailsCards";
 import AdditionalDetailsCards from "../components/AdditionalDetailsCards";
 import Footer from "../components/Footer";
+import MainContentHeader from "../components/MainContentHeader";
+import ToggleButton from "../components/ToggleButton";
 
-const NextWeekend = ({ city, setCity }) => {
+const NextWeekend = ({ city, setCity, checked, setChecked }) => {
   const [weatherData, setWeatherData] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +56,15 @@ const NextWeekend = ({ city, setCity }) => {
       <AllRoutes />
       <div className="App">
         <InputForm city={city} setCity={setCity} />
+        {weatherData.address && (
+          <div className="main-content-header-toggle">
+            <MainContentHeader
+              title={"Today's weather"}
+              currentCity={weatherData.address}
+            />
+            <ToggleButton checked={checked} setChecked={setChecked} />
+          </div>
+        )}
         {isLoading && <p>Loading...</p>}
         {error && <p>ERROR OCCURRED: {error}</p>}
         {/* {!isLoading && (

@@ -8,8 +8,10 @@ import NavPage from "../components/NavPage";
 import DetailsCards from "../components/DetailsCards";
 import AdditionalDetailsCards from "../components/AdditionalDetailsCards";
 import Footer from "../components/Footer";
+import MainContentHeader from "../components/MainContentHeader";
+import ToggleButton from "../components/ToggleButton";
 
-const LastWeekend = ({ city, setCity }) => {
+const LastWeekend = ({ city, setCity, unit, setUnit }) => {
   const [weatherData, setWeatherData] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
@@ -54,11 +56,17 @@ const LastWeekend = ({ city, setCity }) => {
       <AllRoutes />
       <div className="App">
         <InputForm city={city} setCity={setCity} />
+        {weatherData.address && (
+          <div className="main-content-header-toggle">
+            <MainContentHeader
+              title={"Today's weather"}
+              currentCity={weatherData.address}
+            />
+            <ToggleButton unit={unit} setUnit={setUnit} />
+          </div>
+        )}
         {isLoading && <p>Loading...</p>}
         {error && <p>ERROR OCCURRED: {error}</p>}
-        {/* {!isLoading && (
-          <p>Enter the city name to fetch the data. Error in fetching</p>
-        )} */}
         {!isLoading && !error && weatherData.address && (
           <>
             <DetailsCards weatherDaysArray={weatherData.days} />
