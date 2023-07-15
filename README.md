@@ -14,5 +14,6 @@ Project is deployed on Vercel. Deployement link of project is : [link](https://w
  5. Run ```npm run start``` in project working directory.\
  6. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\
  7. Click on any routes i.e. yesterday, today, tomorrow or others to see the data of that day.\
- 8. Enter the city name and hit the enter button, if it does not works, hit enter 2 times to get the data.\
- 9. Toggle the button.
+ 8. Enter the city name and hit the enter button.\
+ 9. Toggle the button.\
+ Edit: Bug - During searching for cities, please hit the enter button 2 times/ click 2 times. Same with toggle button.
